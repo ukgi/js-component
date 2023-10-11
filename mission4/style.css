@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  width: 100%;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  width: 33%;
+}
+
+.user_list {
+  display: flex;
+  flex-wrap: wrap;
+}

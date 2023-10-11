@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <title>Mission 1</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <main id="app"></main>
+    <script>
+      const data = [
+        {
+          text: '코딩하기',
+          isCompleted: true,
+        },
+        {
+          text: '집안 청소하기',
+          isCompleted: false,
+        },
+      ];
+      const menu = [
+        {
+          text: '치킨먹기',
+          isCompleted: false,
+        },
+        {
+          text: '피자먹기',
+          isCompleted: true,
+        },
+      ];
+      const music = [
+        {
+          text: '가리워진 길',
+          isCompleted: false,
+        },
+        {
+          text: '사랑했나봐',
+          isCompleted: true,
+        },
+      ];
+
+      class TodoList {
+        constructor(initialData, app) {
+          this.app = document.querySelector(app);
+          this.list = document.createElement('div');
+          this.app.appendChild(this.list);
+          this.state = validateData(initialData);
+          this.render();
+        }
+        render() {
+          this.list.innerHTML = this.state
+            .map(({ text, isCompleted }) =>
+              isCompleted ? `<p><s>${text}</s></p>` : `<p>${text}</p>`
+            )
+            .join('');
+        }
+        setState(nextData) {
+          this.state = validateData(nextData);
+          this.render();
+        }
+      }
+
+      const errorMessage = {
+        ERROR_NOT_DATATYPE: '데이터가 올바르게 들어오지 않았습니다',
+        ERROR_NOT_ARRAY: '데이터가 배열 형태가 아닙니다.',
+        ERROR_DATA_TEXTTYPE: '데이터의 내용에 문제가 있습니다.',
+      };
+      Object.freeze(errorMessage);
+
+      function validateData(data) {
+        const { ERROR_NOT_DATATYPE, ERROR_NOT_ARRAY, ERROR_DATA_TEXTTYPE } =
+          errorMessage;
+        if (data === null || data === undefined)
+          throw new Error(ERROR_NOT_DATATYPE);
+        else if (!Array.isArray(data)) throw new Error(ERROR_NOT_ARRAY);
+        else if (
+          data.length > 0 &&
+          !data.every(
+            (d) =>
+              d.hasOwnProperty('text') &&
+              typeof d.text === 'string' &&
+              d.isCompleted !== undefined &&
+              typeof d.isCompleted === 'boolean'
+          )
+        )
+          throw new Error(ERROR_DATA_TEXTTYPE);
+        else return data;
+      }
+
+      try {
+        const todoList = new TodoList(data, '#app');
+        const menuList = new TodoList(menu, '#app');
+        const musicList = new TodoList(music, '#app');
+
+        todoList.setState([
+          {
+            text: '산책하기',
+            isCompleted: true,
+          },
+          {
+            text: '영어 공부하기',
+            isCompleted: false,
+          },
+          {
+            text: '강아지 산책하기',
+            isCompleted: true,
+          },
+        ]);
+      } catch (e) {
+        alert(e.message);
+      }
+    </script>
+  </body>
+</html>

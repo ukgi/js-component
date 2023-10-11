@@ -1,0 +1,8 @@
+li {
+  width: 33%;
+  cursor: pointer;
+}
+
+li:hover {
+  color: blue;
+}
