@@ -22,18 +22,18 @@
 ### feature-4
 
 - isCompleted 처리를 한다.
-- 삼항연산자를 활용해서 isCompleted가 true일 때만 <s>를 추가한다.
+- 삼항연산자를 활용해서 isCompleted가 true일 때만 `<s></s>`를 추가한다.
 - 이를 위해서 render 함수의 코드를 수정한다.
   - createElement와 appendChild가 아닌 innerHTML을 이용한다.
 
-### feature -5
+### feature-5
 
 - setState 메서드 내에서 this.data를 메서드 파라미터로 변경한다.
 - this.render 메서드를 통해 리랜더링을 한다.
 
 ## 리팩토링
 
-### refactor -1
+### refactor-1
 
 - validator 함수 이름 바꾸기
   - 함수는 동작을 나타내므로 동사형으로 바꾸기
